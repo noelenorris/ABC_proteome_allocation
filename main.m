@@ -44,13 +44,13 @@ for j = [0.1 10]   %(for sensitivity analysis, iterate over parameter values)
         n_shape = 3; %3: sphere, 2: infinitely long cylinder
 
         % specify transport system of cell
-        transport_model = 2;  %0: No Periplasm, 1: ABC, 2: PTS
+        transport_model = 1;  %0: No Periplasm, 1: ABC, 2: PTS
 
         %file name of .mat which stores parameters specified in this file
-        mat_file_name = strrep(strcat('PTS_fSA_', num2str(j)),'.','p'); 
+        mat_file_name = strrep(strcat('ABC_BP_cost_', num2str(j)),'.','p'); 
         
         % number of iterations to repeat optimization with different IC
-        num_it = 25; 
+        num_it = 50; 
     
 
     
@@ -74,13 +74,13 @@ for j = [0.1 10]   %(for sensitivity analysis, iterate over parameter values)
 
 
         %AVAILABLE SURFACE AREA
-            SA_available_cyto = j*0.5; %fraction of inner membrane surface available for proteins
+            SA_available_cyto = 0.5; %fraction of inner membrane surface available for proteins
 
 
         % ESTIMATED PROTEOMIC COSTS
 
             num_aa_T = 1600; %membrane-bound transport unit
-            num_aa_BP = 400; %binding protein
+            num_aa_BP = j*400; %binding protein
             
             num_aa_E = 40000; % metabolism protein unit
             num_aa_M = 21000; % cell wall synthesis protein unit
